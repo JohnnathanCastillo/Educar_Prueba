@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Educar aplicativo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/01447f7da4.js" crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+<body class="bg-dark">
+   <br>
+  <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-6">
+      <div id="ventana_crear">
+        <div class="row">
+        <div class="col-sm-12" style="text-align:center;">
+          <div class="card bg-light text-dark">
+            <div class="card-header">
+              <button type="button" class="close" id="close" data-dismiss="modal">&times;</button>
+              <h2>Nuevo usuario</h2>
+
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Nombres:</label>
+                  <input type="text" id="nombre_nuevo" class="form-control" placeholder="Ingresa nombres" required>
+                </div>
+                <div class="col-sm-6">
+                  <label>Apellidos:</label>
+                  <input type="text" id="apellido_nuevo" class="form-control" placeholder="Ingresa apellidos" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Identificacion:</label>
+                  <input type="text" id="identificacion_nuevo" class="form-control" placeholder="Ingresa identificacion" required>
+                </div>
+                <div class="col-sm-6">
+                  <label>Telefono:</label>
+                  <input type="text" id="telefono_nuevo" class="form-control" placeholder="Ingresa telefono" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Email:</label>
+                  <input type="text" id="email_nuevo" class="form-control" placeholder="Ingresa email" required>
+                </div>
+                <div class="col-sm-6">
+                  <label>Dirección:</label>
+                  <input type="text" id="direccion_nuevo" class="form-control" placeholder="Ingresa direccion" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12" style="text-align:center;">
+                    <h4><strong>Información bancaria</strong></h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>Entidad:</label>
+                  <select class="form-control" id="banco_select" style="height: 30px;">
+                    <option value="Sin seleccion">Selecciona...</option>
+                    <option value="Bancolombia">Bancolombia</option>
+                    <option value="BBVA">BBVA</option>
+                    <option value="Banco de Bogota">Banco de Bogotá</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label>Tipo de cuenta:</label>
+                  <select class="form-control" id="cuenta_select" style="height: 30px;">
+                    <option value="Sin seleccion">Selecciona...</option>
+                    <option value="Cuenta ahorros">Cuenta ahorros</option>
+                    <option value="Cuenta corriente">Cuenta corriente</option>
+                    <option value="Cuenta nomina">Cuenta nomina</option>
+                  </select>
+                </div>
+              </div>
+
+               <div class="row">
+                  <div class="col-sm-6">
+                    <label>Saldo:</label>
+                    <input type="text" id="saldo" class="form-control" placeholder="Saldo de la cuenta">
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                <div class="col-sm-12" style="text-align:center;">
+                    <button class="btn btn-success" id="creando_usuario">Crear</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>     
+        </div>  
+      </div>
+      <div id="usuarios">
+      <div class="row">
+        <div class="col-sm-12" style="text-align:center;">
+          <div class="card bg-light text-dark">
+            <div class="card-header">
+              <h2>Lista de usuarios</h2>
+            </div>
+            <div class="card-body">
+              <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
+              <table class="table">
+                <thead class="thead-light">
+                  <th>ID usuario</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Acciones</th>
+                </thead>
+                <tbody id="listados">
+                </tbody>
+              </table> 
+              </div>            
+           </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-body">
+                <div id="notificaciones">
+                  <div class="alert alert-danger" role="alert" id="alert_no_accion">
+                     No has seleccionado ninguna opcion del usuario
+                  </div>
+                 </div> 
+                 <div id="banco">
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                      <label  ><strong>Nombre del banco:</strong></label><br>
+                      <label id="nombre_banco" class="text-primary"><br></label>
+                     </div> 
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                      <label id="enunciado_tipo_cuenta"><strong>Tipo de cuenta:</strong></label><br>
+                      <label id="cuenta_banco" class="text-primary"><br></label>
+                    </div> 
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                      <label id="enunciado_saldo_cuenta"><strong>Saldo de cuenta:</strong></label><br>
+                      <label id="saldo_banco" class="text-primary"><br></label>
+                    </div>
+                   </div>   
+                </div>
+
+                <div id="usuario">
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                      <label  ><strong>Nombres y apellidos:</strong></label><br>
+                      <label id="nombres_apellidos" class="text-primary"></label>
+                     </div> 
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                      <label  ><strong>Identificación:</strong></label><br>
+                      <label id="identificacion" class="text-primary"></label>
+                     </div> 
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                      <label  ><strong>Dirección:</strong></label><br>
+                      <label id="direccion" class="text-primary"></label>
+                     </div> 
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                      <label  ><strong>Telefono:</strong></label><br>
+                      <label id="telefono" class="text-primary"></label>
+                     </div> 
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                      <label  ><strong>Email:</strong></label><br>
+                      <label id="email" class="text-primary"></label>
+                     </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-2">
+    
+       
+          <div class="row">
+              <div class="col-sm-12">
+                <button type="button" class="btn btn-warning" id="btn_mostrar_crear">Crear</button>
+              </div>
+          </div>
+       
+    
+    </div>
+  </div>
+</div>
+</body>
+<script src="operaciones.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</html>
+
